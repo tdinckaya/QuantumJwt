@@ -16,6 +16,8 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/tdinckaya/QuantumJwt</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/tdinckaya/QuantumJwt</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
