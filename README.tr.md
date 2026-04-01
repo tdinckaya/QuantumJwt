@@ -6,6 +6,27 @@
 
 [![NuGet](https://img.shields.io/nuget/v/QuantumJwt.svg)](https://www.nuget.org/packages/QuantumJwt)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/tdinckaya/QuantumJwt)
+
+## Canli Demo
+
+```bash
+# GitHub Codespaces veya .NET 10 yuklu herhangi bir Linux/Windows makinede:
+cd examples/QuantumJwt.Demo && dotnet run
+
+# Token uret
+curl -X POST http://localhost:5000/token -H "Content-Type: application/json" \
+  -d '{"sub":"user1","role":"admin"}'
+
+# Dogrula
+curl http://localhost:5000/protected -H "Authorization: Bearer <token>"
+
+# Iptal et
+curl -X POST http://localhost:5000/token/revoke -H "Content-Type: application/json" \
+  -d '{"token":"<token>"}'
+```
+
+---
 
 ## Ne Yapar?
 

@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="QuantumJwt.Tests" />
+    <InternalsVisibleTo Include="QuantumJwt.Demo" />
   </ItemGroup>
 
 </Project>
