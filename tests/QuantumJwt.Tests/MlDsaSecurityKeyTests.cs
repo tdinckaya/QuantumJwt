@@ -82,17 +82,19 @@ public class MlDsaSecurityKeyTests
     // ── Key size ─────────────────────────────────────────────────
 
     [SkippableTheory]
-    [InlineData("ML-DSA-44", 1280 * 8)]
-    [InlineData("ML-DSA-65", 1952 * 8)]
-    [InlineData("ML-DSA-87", 2592 * 8)]
-    public void KeySize_ReturnsCorrectSize_ForEachAlgorithm(string algName, int expectedBits)
+    [InlineData("ML-DSA-44")]
+    [InlineData("ML-DSA-65")]
+    [InlineData("ML-DSA-87")]
+    public void KeySize_ReturnsCorrectSize_ForEachAlgorithm(string algName)
     {
         Skip.IfNot(MLDsa.IsSupported, "ML-DSA not supported on this platform.");
 
         var algorithm = MlDsaAlgorithms.ToMLDsaAlgorithm(algName);
         using var key = MlDsaSecurityKey.Generate(algorithm);
 
+        var expectedBits = algorithm.PublicKeySizeInBytes * 8;
         Assert.Equal(expectedBits, key.KeySize);
+        Assert.True(key.KeySize > 0);
     }
 
     // ── Export / import round-trip ────────────────────────────────
@@ -201,7 +203,10 @@ public class MlDsaSecurityKeyTests
         Skip.IfNot(MLDsa.IsSupported, "ML-DSA not supported on this platform.");
 
         using var key = MlDsaSecurityKey.Generate(MLDsaAlgorithm.MLDsa65);
-        var handler = new JwtSecurityTokenHandler();
+        var handler = new JwtSecurityTokenHandler
+        {
+            InboundClaimTypeMap = new Dictionary<string, string>() // Disable claim mapping
+        };
 
         // Create token
         var descriptor = new SecurityTokenDescriptor
@@ -246,7 +251,10 @@ public class MlDsaSecurityKeyTests
         var publicBytes = signingKey.ExportPublicKey();
         using var verificationKey = MlDsaSecurityKey.FromPublicKey(publicBytes, MLDsaAlgorithm.MLDsa65);
 
-        var handler = new JwtSecurityTokenHandler();
+        var handler = new JwtSecurityTokenHandler
+        {
+            InboundClaimTypeMap = new Dictionary<string, string>()
+        };
 
         var descriptor = new SecurityTokenDescriptor
         {

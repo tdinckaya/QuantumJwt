@@ -10,7 +10,10 @@ namespace QuantumJwt.Tests;
 
 public class HybridMigrationTests
 {
-    private static readonly JwtSecurityTokenHandler TokenHandler = new();
+    private static readonly JwtSecurityTokenHandler TokenHandler = new()
+    {
+        InboundClaimTypeMap = new Dictionary<string, string>()
+    };
 
     // ── Helper: create an RSA-signed token ───────────────────────
 

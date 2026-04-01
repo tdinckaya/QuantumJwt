@@ -78,7 +78,10 @@ public class CompositeMlDsaSecurityKeyTests
         Skip.IfNot(CompositeMLDsa.IsSupported, "Composite ML-DSA not supported on this platform.");
 
         using var key = CompositeMlDsaSecurityKey.Generate(CompositeMLDsaAlgorithm.MLDsa65WithRSA4096Pss);
-        var handler = new JwtSecurityTokenHandler();
+        var handler = new JwtSecurityTokenHandler
+        {
+            InboundClaimTypeMap = new Dictionary<string, string>()
+        };
         var jwtAlg = MlDsaAlgorithms.ToJwtAlgorithm(key.Algorithm);
 
         var descriptor = new SecurityTokenDescriptor

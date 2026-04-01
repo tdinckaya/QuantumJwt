@@ -26,7 +26,10 @@ namespace QuantumJwt;
 public sealed class HybridMigrationHandler
 {
     private readonly HybridMigrationOptions _options;
-    private readonly JwtSecurityTokenHandler _tokenHandler = new();
+    private readonly JwtSecurityTokenHandler _tokenHandler = new()
+    {
+        InboundClaimTypeMap = new Dictionary<string, string>()
+    };
 
     /// <summary>
     /// Initializes a new <see cref="HybridMigrationHandler"/>.
