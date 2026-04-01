@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);SYSLIB5006;1591</NoWarn>
+
+    <!-- NuGet metadata -->
+    <PackageId>QuantumJwt</PackageId>
+    <Version>1.0.0</Version>
+<Description>Bridges ML-DSA (Dilithium) and Composite ML-DSA post-quantum signatures into the Microsoft.IdentityModel.Tokens JWT ecosystem. Drop-in replacement: just change IssuerSigningKey.</Description>
+    <PackageTags>jwt;post-quantum;ml-dsa;dilithium;authentication;fips-204;composite;pqc</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.*" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.*" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="QuantumJwt.Tests" />
+  </ItemGroup>
+
+</Project>
