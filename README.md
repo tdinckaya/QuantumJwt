@@ -6,13 +6,12 @@ Post-quantum JWT signing for .NET 10. Drop-in replacement — just change `Issue
 
 [![NuGet](https://img.shields.io/nuget/v/QuantumJwt.svg)](https://www.nuget.org/packages/QuantumJwt)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/tdinckaya/QuantumJwt)
-
 ## Try the Live Demo
 
 ```bash
-# In GitHub Codespaces or any Linux/Windows machine with .NET 10:
-cd examples/QuantumJwt.Demo && dotnet run
+# Docker (works everywhere — includes OpenSSL 3.5)
+docker build -t quantumjwt-demo .
+docker run -p 5000:5000 quantumjwt-demo
 
 # Generate a token
 curl -X POST http://localhost:5000/token -H "Content-Type: application/json" \
@@ -24,7 +23,15 @@ curl http://localhost:5000/protected -H "Authorization: Bearer <token>"
 # Revoke it
 curl -X POST http://localhost:5000/token/revoke -H "Content-Type: application/json" \
   -d '{"token":"<token>"}'
+
+# Analyze token size
+curl "http://localhost:5000/token/analyze?token=<token>"
 ```
+
+> **Without Docker:** Requires Windows 11/Server 2025 or Linux with OpenSSL 3.5+, plus .NET 10 SDK.
+> ```bash
+> cd examples/QuantumJwt.Demo && dotnet run
+> ```
 
 ---
 

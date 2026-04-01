@@ -6,13 +6,12 @@
 
 [![NuGet](https://img.shields.io/nuget/v/QuantumJwt.svg)](https://www.nuget.org/packages/QuantumJwt)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/tdinckaya/QuantumJwt)
-
 ## Canli Demo
 
 ```bash
-# GitHub Codespaces veya .NET 10 yuklu herhangi bir Linux/Windows makinede:
-cd examples/QuantumJwt.Demo && dotnet run
+# Docker (her yerde calisir — OpenSSL 3.5 dahil)
+docker build -t quantumjwt-demo .
+docker run -p 5000:5000 quantumjwt-demo
 
 # Token uret
 curl -X POST http://localhost:5000/token -H "Content-Type: application/json" \
@@ -24,7 +23,15 @@ curl http://localhost:5000/protected -H "Authorization: Bearer <token>"
 # Iptal et
 curl -X POST http://localhost:5000/token/revoke -H "Content-Type: application/json" \
   -d '{"token":"<token>"}'
+
+# Token boyut analizi
+curl "http://localhost:5000/token/analyze?token=<token>"
 ```
+
+> **Docker olmadan:** Windows 11/Server 2025 veya OpenSSL 3.5+ yuklu Linux + .NET 10 SDK gerekir.
+> ```bash
+> cd examples/QuantumJwt.Demo && dotnet run
+> ```
 
 ---
 
