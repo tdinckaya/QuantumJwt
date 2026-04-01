@@ -1,5 +1,7 @@
 # QuantumJwt
 
+> **[Turkce dokumantasyon icin tiklayiniz](README.tr.md)**
+
 Post-quantum JWT signing for .NET 10. Drop-in replacement — just change `IssuerSigningKey`.
 
 [![NuGet](https://img.shields.io/nuget/v/QuantumJwt.svg)](https://www.nuget.org/packages/QuantumJwt)
